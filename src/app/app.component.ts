@@ -1,10 +1,13 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
+var callback;
+
 @Component({
   selector: 'app-root',
   template: `
     <button #myBtn id="doesntMatter" (click)="attachJsonToGlobalScope()">Attach JSON to global scope</button>
+    <button (click)="changeValues()" id="changeValues">Change values and attach to global scope</button>
   `,
   styleUrls: ['./app.component.css']
 })
@@ -29,6 +32,17 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   };
 
   constructor(protected http: HttpClient) {
+  }
+
+  changeValues() {
+    this.sampleJson.someNum = 321;
+    this.sampleJson.someBool = false;
+    this.sampleJson.someStr = 'RIP';
+
+    console.log('Change values: attaching to window.myPrimitives or window["myPrimitives"]');
+    window['myPrimitives'] = this.sampleJson;
+
+    callback.onSuccess(JSON.stringify(window['myPrimitives']));
   }
 
   attachJsonToGlobalScope() {
