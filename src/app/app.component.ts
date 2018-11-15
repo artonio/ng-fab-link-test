@@ -17,6 +17,7 @@ export class AppComponent {
   };
 
   attachJsonToGlobalScope() {
+    console.log('attaching to window.myPrimitives or window["myPrimitives"]');
     window['myPrimitives'] = this.sampleJson;
   }
 }
