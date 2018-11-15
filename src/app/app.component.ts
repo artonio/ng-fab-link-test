@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   template: `
-    <button (click)="attachJsonToGlobalScope()">Attach JSON to global scope</button>
+    <button #myBtn id="doesntMatter" (click)="attachJsonToGlobalScope()">Attach JSON to global scope</button>
   `,
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
   title = 'ng-fab-link-test';
+
+  @ViewChild('myBtn') myBtn;
 
   sampleJson = {
     someNum: 123,
@@ -19,5 +21,9 @@ export class AppComponent {
   attachJsonToGlobalScope() {
     console.log('attaching to window.myPrimitives or window["myPrimitives"]');
     window['myPrimitives'] = this.sampleJson;
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this.myBtn);
   }
 }
