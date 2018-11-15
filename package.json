@@ -1,12 +1,13 @@
 {
   "name": "ng-fab-link-test",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "build-prod": "ng build --prod --aot --base-href ./ && grunt war",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -20,6 +21,9 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "grunt": "^1.0.3",
+    "grunt-cli": "^1.2.0",
+    "grunt-war": "^0.5.1",
     "core-js": "^2.5.4",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
