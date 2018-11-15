@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 export class AppComponent implements AfterViewInit{
   title = 'ng-fab-link-test';
 
-  @ViewChild('myBtn') myBtn;
+  @ViewChild('myBtn') myBtn: ElementRef;
 
   sampleJson = {
     someNum: 123,
@@ -24,6 +24,7 @@ export class AppComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    console.log(this.myBtn);
+    console.log(this.myBtn.nativeElement);
+    console.log(document.getElementById('doesntMatter'));
   }
 }
