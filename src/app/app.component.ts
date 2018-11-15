@@ -42,7 +42,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     console.log('Change values: attaching to window.myPrimitives or window["myPrimitives"]');
     window['myPrimitives'] = this.sampleJson;
 
-    callback.onSuccess(JSON.stringify(window['myPrimitives']));
+    window['myJavaCB']();
   }
 
   attachJsonToGlobalScope() {
